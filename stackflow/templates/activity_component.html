@@ -1,0 +1,35 @@
+<button class="btn btn-primary w-100 d-md-none mb-3" type="button" data-bs-toggle="collapse" data-bs-target="#activityMenu">Recent Activity <i class="bi bi-caret-down-square"></i></button>
+{% load static %}
+<div id="activityMenu" class="collapse d-md-block mt-md-4" >
+    <h4 class="d-none d-md-block p-lg-2 mb-0 text-start">Recent Activities🔻</h4>
+    <div class="card mb-3 bg-secondary text-white">
+        <div class="card-body activity-card mt-0">
+        {% if room_messages %}
+            <div class="overflow-auto" style="max-height: 90vh;">
+            {% for message in room_messages %}
+            <div class="mb-3 p-2 border-bottom">
+                <div class="d-flex text-info"> 
+                    <div class="">
+                        <a href="{% url 'userProfile' message.user.id %}" class="card-subtitle text-white fs-5 text-decoration-none">
+                            <img src="{{message.user.avator.url}}" class="rounded-circle border border-secondary" width="30" height="30">
+                            <sub>@</sub>{{message.user.username}}
+                        </a>
+                        <span class="text-white"><sub>{{message.created | timesince}}</sub></span>
+                    </div>
+                    {% if request.user == message.user%}
+                    <a href="{% url 'deleteMessage' message.id %}" class="btn btn-sm text-white ms-lg-auto ms-md-auto align-self-center"><i class="bi bi-x fs-5"></i></a>
+                    {% endif %}
+                </div>
+                <p class="d-block text-white">replied to <a href="{% url 'room' message.room.id %}" class="badge bg-success text-decoration-none">{{message.room}}</a> </p>
+                <p class="mb-1 rounded shadow p-3 bg-white text-dark mb-3">{{message.body}}</p>
+            </div>
+            {% endfor %}
+            </div>
+        </div>
+        {% else %}
+        <div class="">
+            <p class="mb-1 rounded shadow p-3 bg-white text-dark mb-3">No Recent Activities</p>
+        </div>
+        {% endif %}
+    </div>
+</div>

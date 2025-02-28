@@ -1,0 +1,20 @@
+
+<button type="button" class="btn btn-primary w-100 d-md-none mb-3" data-bs-toggle="collapse" data-bs-target="#topicsMenu">Browse Topics <i class="bi bi-caret-down-square"></i></button>
+    <div id="topicsMenu" class="collapse d-md-block rounded">
+        <h5 class="fs-4 d-none d-md-block text-start">Browse Topics🔻</h5>
+        <div class="bg-body-secondary rounded p-1 mt-lg-1 mt-md-5">
+            <div class="list-group list-group-flush">
+                <a href="{% url 'home' %}" class="list-group-item bg-body-tertiary text-dark d-flex justify-content-between align-items-center">
+                    All 
+                    <span class="badge bg-warning text-sm-end">{{ topics.count }}</span>
+                </a>
+                <div class="overflow-auto" style="max-height: 55vh;">
+                    {% for topic in topics %}
+                    <a href="{% url 'home' %}?q={{ topic.name }}" class="list-group-item bg-body-tertiary text-dark d-flex justify-content-between align-items-center">
+                        {{ topic.name }} 
+                        <span class="badge bg-danger text-sm-end">{{ topic.room_set.all.count}}</span> </a>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>

@@ -1,0 +1,36 @@
+{% extends "main.html" %}
+{% block content %}
+{% load widget_tweaks %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-8 col-lg-6">
+            <div class="card shadow-lg border-0 p-4">
+                
+                <h4 class="text-center mb-4">EDIT YOUR PROFILE</h4>
+                <div class="text-center">
+                    <img src="{{request.user.avator.url}}" class="rounded-circle border border-secondary" width="120" height="120">
+                </div>
+
+                <form method="POST" enctype="multipart/form-data" class="mt-3">
+                    {% csrf_token %}
+
+                    {% for field in form %}
+                    <div class="mb-3">
+                        <label class="form-label">{{field.label}}</label>
+                        {{field|add_class:"form-control"}}
+                    </div>
+                    {% endfor %}
+
+                    <div class="d-flex justify-content-center gap-3">
+                        <button type="submit" class="btn btn-primary w-50">Update</button>
+                        <a href="{% url 'home' %}" class="btn btn-danger w-50">Cancel</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}

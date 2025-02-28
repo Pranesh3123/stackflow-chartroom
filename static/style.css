@@ -1,0 +1,6 @@
+.overflow-auto::-webkit-scrollbar {
+    display: none; /* Hides scrollbar in Chrome, Safari */
+}
+.overflow-auto {
+    scrollbar-width: none; /* Hides scrollbar in Firefox */
+}
