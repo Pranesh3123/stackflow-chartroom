@@ -92,7 +92,7 @@ DATABASES = {
     'default': {}
 }
 
-DATABASES['default'] = dj_database_url.parse("postgresql://stackflow_user:WwkakFYvOZhST4296oEMBA7wwS8Ajhba@dpg-cvidieeuk2gs73amh730-a.oregon-postgres.render.com/stackflow")
+DATABASES['default'] = dj_database_url.parse(database_url)
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
